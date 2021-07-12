@@ -7,9 +7,10 @@
 }
 
 .footer_marge{
-    margin-top: 2rem; margin: 2rem 0;
+    margin-top: 2rem;
 }
 
 .footer_style{
+    margin: 2rem 0;
     font-family: 'Yellowtail', cursive;
 }

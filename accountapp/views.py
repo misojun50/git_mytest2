@@ -1,7 +1,9 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
+from django.urls import reverse
+
 from accountapp.models import HelloAgain
 
 
@@ -14,10 +16,7 @@ def hello_again(request):
         hel_again.text = temp
         hel_again.save()
 
-        hel_again_list = HelloAgain.objects.all()
-
-        return render(request,'accountapp/hello_again.html',
-                      context={'hel_again_list': hel_again_list })
+        return HttpResponseRedirect(reverse("accountapp:Hello_again"))
     else:
         hel_again_list = HelloAgain.objects.all()
         return render(request, 'accountapp/hello_again.html',
