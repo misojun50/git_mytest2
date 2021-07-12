@@ -14,8 +14,11 @@ def hello_again(request):
         hel_again.text = temp
         hel_again.save()
 
+        hel_again_list = HelloAgain.objects.all()
+
         return render(request,'accountapp/hello_again.html',
-                      context={'hel_again': hel_again })
+                      context={'hel_again_list': hel_again_list })
     else:
+        hel_again_list = HelloAgain.objects.all()
         return render(request, 'accountapp/hello_again.html',
-                      context={'text': 'GET METHOD!'})
+                      context={'hel_again_list': hel_again_list })
