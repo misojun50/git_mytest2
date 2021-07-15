@@ -3,11 +3,27 @@
         <h1>Nothing here.</h1>
 
     </div>
-    <div class="header_marge" ">
+    <div class="header_marge">
         <span>1</span>
         <span>2</span>
-        <span>3</span>
-        <span>4</span>
+        {% if not user.is_authenticated %}
+        <span>
+            <a href="{% url "accountapp:login" %}">
+                Login
+            </a>
+        </span>
+        <span>
+            <a href="{% url "accountapp:create" %}">
+                Sign up
+            </a>
+        </span>
+        {% else %}
+        <span>
+            <a href="{% url 'accountapp:logout' %}">
+                Logout
+            </a>
+        </span>
+        {% endif %}
         <span>5</span>
     </div>
 </div>
