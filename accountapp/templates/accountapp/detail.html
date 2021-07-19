@@ -13,6 +13,7 @@
         <div>
             {{ target_User.date_joined }}
         </div>
+        {% if user == target_User %}
         <div>
             <a href="{% url 'accountapp:update' pk=target_User.pk %}">
                 정보 수정
@@ -23,6 +24,7 @@
                회원탈퇴
            </a>
         </div>
+        {% endif %}
     </div>
 
 
