@@ -11,6 +11,7 @@ from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from accountapp.forms import AccountCreationForm
 from accountapp.models import HelloAgain
+from decorators import account_validation
 
 
 @login_required
@@ -41,8 +42,10 @@ class AccountDetailView(DetailView):
     context_object_name = 'target_User'
     template_name = 'accountapp/detail.html'
 
-@method_decorator(login_required, 'get')
-@method_decorator(login_required, 'post')
+account_var = [login_required, account_validation]
+
+@method_decorator(account_var, 'get')
+@method_decorator(account_var, 'post')
 class AccountUpdateView(UpdateView):
     model = User
     form_class = AccountCreationForm
@@ -50,8 +53,8 @@ class AccountUpdateView(UpdateView):
     success_url = reverse_lazy('accountapp:Hello_again')
     template_name = 'accountapp/update.html'
 
-@method_decorator(login_required, 'get')
-@method_decorator(login_required, 'post')
+@method_decorator(account_var, 'get')
+@method_decorator(account_var, 'post')
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_User'
