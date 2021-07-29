@@ -12,8 +12,8 @@
                 <h2 class="NNS_B">
                     {{ target_User.profile.nickname }}
                     {% if user == target_User %}
-                    <a href={% url 'profileapp:update' pk=target_User.profile.pk %}>
-                        정보수정
+                    <a href={% url 'profileapp:update' pk=target_User.profile.pk %} class="material-icons round_button">
+                        edit
                     </a>
                         {% endif %}
                 </h2>
