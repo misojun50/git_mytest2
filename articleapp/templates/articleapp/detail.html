@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <div clas="container">
+    <div class="container">
         <div>
             <h1>{{ target_article.title }}</h1>
             <h3>{{ target_article.writer.profile.nickname }}</h3>
@@ -11,6 +11,11 @@
         <div>
             <img src="{{ target_article.image.url }}" alt="">
             {{ target_article.content }}
+            <div>
+            <a href="{% url 'articleapp:update' pk=target_article.pk %}" class="btn btn-success round_button px-5">
+                게시글 수정하기
+            </a>
+            </div>
         </div>
     </div>
 
