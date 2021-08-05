@@ -2,23 +2,37 @@
 
 {% block content %}
 
-    <div class="container">
-        <div>
-            <h1>{{ target_article.title }}</h1>
+    <div class="container text-center">
+        <div class="my-5">
+            <h1 class='NNS_B'>{{ target_article.title }}</h1>
             <h3>{{ target_article.writer.profile.nickname }}</h3>
             <p>{{ target_article.created_at }}</p>
         </div>
+
+        <hr class="my-5">
+
         <div>
-            <img src="{{ target_article.image.url }}" alt="">
+            <img src="{{ target_article.image.url }}"
+                 class="article_image"
+                 alt="">
+            <div class="article_content my-5">
             {{ target_article.content }}
-            <div>
-            <a href="{% url 'articleapp:update' pk=target_article.pk %}" class="btn btn-success rounded-pill px-5">
-                게시글 수정하기
-            </a>
-            <a href="{% url 'articleapp:delete' pk=target_article.pk %}" class="btn btn-danger rounded-pill px-5">
-                게시글 삭제
-            </a>
             </div>
+            {% if target_article.writer == user %}
+            <div>
+                <a href="{% url 'articleapp:update' pk=target_article.pk %}" class="btn btn-success rounded-pill px-5">
+                    게시글 수정하기
+                </a>
+                <a href="{% url 'articleapp:delete' pk=target_article.pk %}" class="btn btn-danger rounded-pill px-5">
+                    게시글 삭제
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+        <hr>
+        <div>
+
         </div>
     </div>
 
