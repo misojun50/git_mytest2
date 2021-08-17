@@ -4,8 +4,16 @@
 
     </div>
     <div class="header_marge">
-        <span>1</span>
-        <span>2</span>
+        <span>
+            <a href="{% url 'articleapp:list' %}">
+                게시글
+            </a>
+        </span>
+        <span>
+            <a href="{% url 'projectapp:list' %}">
+                프로젝트
+            </a>
+        </span>
         {% if not user.is_authenticated %}
         <span>
             <a href="{% url "accountapp:login" %}">
