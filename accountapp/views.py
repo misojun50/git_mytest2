@@ -16,27 +16,10 @@ from accountapp.decorators import account_validation
 from articleapp.models import Article
 
 
-@login_required
-def hello_again(request):
-    if request.method == "POST":
-
-        temp = request.POST.get('input_text')
-
-        hel_again = HelloAgain()
-        hel_again.text = temp
-        hel_again.save()
-
-        return HttpResponseRedirect(reverse("accountapp:Hello_again"))
-    else:
-        hel_again_list = HelloAgain.objects.all()
-        return render(request, 'accountapp/hello_again.html',
-                      context={'hel_again_list': hel_again_list })
-
-
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = reverse_lazy('accountapp:Hello_again')
+    success_url = reverse_lazy('articleapp:list')
     template_name ='accountapp/create.html'
 
 class AccountDetailView(DetailView, MultipleObjectMixin):
@@ -67,5 +50,5 @@ class AccountUpdateView(UpdateView):
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_User'
-    success_url = reverse_lazy('accountapp:Hello_again')
+    success_url = reverse_lazy('articleapp:list')
     template_name = 'accountapp/delete.html'
