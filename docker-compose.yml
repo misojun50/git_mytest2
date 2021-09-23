@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+
+  nginx:
+    image: nginx:1.19.5
+    ports:
+      - 80:80
+    networks:
+      - myproject_2_network
+    volumes:
+      - /home/misojun50/nginx.conf:/etc/nginx/nginx.conf
+      - myproject_static:/data/static/
+      - myproject_media:/data/media/
+
+  django:
+    image: myproject2:3
+    networks:
+      - myproject_2_network
+    volumes:
+      - myproject_static:/home/git_mytest2/staticfiles/
+      - myproject_media:/home/git_mytest2/media/
+
+networks:
+  myproject_2_network:
+volumes:
+  myproject_static:
+  myproject_media:
